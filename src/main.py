@@ -1,6 +1,6 @@
 import shutil
 from textnode import TextNode, TextType
-from file_functions import file_copy
+from file_functions import file_copy, generate_page
 
 
 #test = TextNode("Hey There!", TextType.PLAIN_TEXT)
@@ -11,4 +11,6 @@ def run_file_copy(src, dst):
     file_copy(src,dst)
     print("File copying done")
 
-run_file_copy("./static", "./public")
+def main():
+    run_file_copy("./static", "./public")
+    generate_page("./content/index.md","./template.html", "./public/index.html")

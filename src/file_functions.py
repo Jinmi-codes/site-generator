@@ -1,4 +1,7 @@
+import re
 import os, shutil
+from markdown_blocks import markdown_to_html_node
+
 
 def file_copy(src, dst):
     src = os.path.normpath(src)
@@ -14,4 +17,30 @@ def file_copy(src, dst):
         else:
             file_copy(os.path.join(src, file), os.path.join(dst,file))
         
-file_copy("./static","./public")
+
+
+def extract_title(markdown):
+    for line in markdown.split("\n"):
+        if line.startswith("# "):
+            return line[2:].strip()
+    raise Exception("No header found.")
+            
+def generate_page(src, template_src, dst):
+    print(f"Generating page from {src}, to {dst} using the {template_src} template.")
+    if not os.path.exists(os.path.dirname(dst)):
+        os.makedirs(os.path.dirname(dst))
+    
+    with open(src, 'r') as md:
+        content = md.read()
+    with open(template_src, 'r') as template:
+        html_template = template.read()
+    
+    content_html = markdown_to_html_node(content).to_html()
+    title = extract_title(content)
+    final_html = html_template.replace("{{ Title }}", title)
+    final_html = final_html.replace("{{ Content }}", content_html)
+    
+    with open(dst, 'w') as html:
+        html.write(final_html)
+    
+    
