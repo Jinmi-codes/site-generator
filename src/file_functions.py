@@ -25,7 +25,7 @@ def extract_title(markdown):
             return line[2:].strip()
     raise Exception("No header found.")
             
-def generate_page(src, template_src, dst):
+def generate_page(src, template_src, dst, basepath):
     print(f"Generating page from {src}, to {dst} using the {template_src} template.")
     if not os.path.exists(os.path.dirname(dst)):
         os.makedirs(os.path.dirname(dst))
@@ -39,17 +39,19 @@ def generate_page(src, template_src, dst):
     title = extract_title(content)
     final_html = html_template.replace("{{ Title }}", title)
     final_html = final_html.replace("{{ Content }}", content_html)
+    final_html = final_html.replace("href=\"/", f"href=\"{basepath}")
+    final_html = final_html.replace("src=\"/", f"src=\"{basepath}")
     
     with open(dst, 'w') as html:
         html.write(final_html)
     
-def generate_page_recursive(src, temp_src, dst):
+def generate_page_recursive(src, temp_src, dst, basepath):
     pages = os.listdir(src)
     
     for page in pages:
         if os.path.isfile(os.path.join(src, page)):
-            generate_page(os.path.join(src, page), temp_src, os.path.join(dst, f"{page.split(".md")[0]}.html" ))
+            generate_page(os.path.join(src, page), temp_src, os.path.join(dst, f"{page.split(".md")[0]}.html" ), basepath)
         else:
-            generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page))
+            generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page), basepath)
             
     
