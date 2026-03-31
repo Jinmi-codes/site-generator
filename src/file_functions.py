@@ -43,4 +43,13 @@ def generate_page(src, template_src, dst):
     with open(dst, 'w') as html:
         html.write(final_html)
     
+def generate_page_recursive(src, temp_src, dst):
+    pages = os.listdir(src)
+    
+    for page in pages:
+        if os.path.isfile(os.path.join(src, page)):
+            generate_page(os.path.join(src, page), temp_src, os.path.join(dst, f"{page.split(".md")[0]}.html" ))
+        else:
+            generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page))
+            
     
