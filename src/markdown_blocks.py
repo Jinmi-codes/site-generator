@@ -75,11 +75,11 @@ def markdown_to_html_node(markdown):
                 
             case BlockType.QUOTE:
                 items = [line[2:] for line in block.split("\n")]
-                block_node = ParentNode('blockquote', text_to_children("\n".join(items)))
+                block_node = ParentNode('blockquote', text_to_children(" ".join(items)))
                 new_blocks.append(block_node)
             
             case BlockType.CODE:
-                content = block[3:-3]
+                content = block[4:-3]
                 block_node = ParentNode('pre', [ParentNode('code', [text_node_to_html_node(TextNode(content, TextType.TEXT)) ])])
                 new_blocks.append(block_node)
             
