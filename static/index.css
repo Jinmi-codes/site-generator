@@ -68,14 +68,40 @@ body {
   gap: 2rem;
 }
 
+.home-hero {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.home-intro {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.home-eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
 .home-hero h1 {
-  margin-bottom: 0.85rem;
+  margin-bottom: 0;
 }
 
 .home-description {
   max-width: 64ch;
   color: var(--text-muted);
-  margin-bottom: 0.6rem;
+  margin-bottom: 0;
+}
+
+.home-note {
+  margin: 0;
+  max-width: 58ch;
+  color: var(--text);
+  opacity: 0.88;
 }
 
 .home-posts h2 {
@@ -287,21 +313,21 @@ th {
 
 @media (max-width: 640px) {
   .masthead {
-    width: min(760px, 100% - 1.2rem);
-    margin-top: 0.9rem;
+    width: min(760px, 100% - 1.5rem);
+    margin-top: 1rem;
   }
 
   .page-shell {
-    width: min(760px, 100% - 1.2rem);
-    padding: 0.7rem 0 1.4rem;
+    width: min(760px, 100% - 1.5rem);
+    padding: 1rem 0 1.8rem;
   }
 
   .content-body {
-    padding: 1rem;
+    padding: 1.15rem;
   }
 
   .home-shell {
-    gap: 1.35rem;
+    gap: 1.5rem;
   }
 
   .blog-list {
@@ -317,6 +343,15 @@ th {
 }
 
 @media (max-width: 420px) {
+  .masthead {
+    width: min(760px, 100% - 1.75rem);
+  }
+
+  .page-shell {
+    width: min(760px, 100% - 1.75rem);
+    padding-bottom: 2rem;
+  }
+
   .blog-list {
     grid-template-columns: 1fr;
   }
