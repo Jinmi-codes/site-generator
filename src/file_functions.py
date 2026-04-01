@@ -55,3 +55,7 @@ def generate_page_recursive(src, temp_src, dst, basepath):
             generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page), basepath)
             
     
+    
+def generate_cname(dst):
+    with open(f"{dst}/CNAME", 'w') as cname:
+        cname.write("blog.jinmi.dev")

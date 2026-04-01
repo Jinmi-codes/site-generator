@@ -1,6 +1,6 @@
 import shutil, sys,os
 from textnode import TextNode, TextType
-from file_functions import file_copy, generate_page_recursive
+from file_functions import file_copy, generate_page_recursive, generate_cname
 
 
 #test = TextNode("Hey There!", TextType.PLAIN_TEXT)
@@ -18,5 +18,6 @@ def run_file_copy(src, dst):
 def main():
     run_file_copy("./static", "./docs")
     generate_page_recursive("./content/","./template.html", "./docs/", basepath)
+    generate_cname("./docs")
 
 main()
