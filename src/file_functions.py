@@ -1,5 +1,6 @@
 import re
 import os, shutil
+from index_builder import Page
 from markdown_blocks import markdown_to_html_node
 
 
@@ -45,16 +46,22 @@ def generate_page(src, template_src, dst, basepath):
     with open(dst, 'w') as html:
         html.write(final_html)
     
+    return title
+    
 def generate_page_recursive(src, temp_src, dst, basepath):
     pages = os.listdir(src)
-    
+    all_content = []
     for page in pages:
         if os.path.isfile(os.path.join(src, page)):
-            generate_page(os.path.join(src, page), temp_src, os.path.join(dst, f"{page.split(".md")[0]}.html" ), basepath)
+            title = generate_page(os.path.join(src, page), temp_src, os.path.join(dst, f"{page.split(".md")[0]}.html" ), basepath)
+            build_path = dst.split("docs/")[1]
+            page_node = Page(title, f"{build_path}/{page.split(".md")[0]}.html")
+            all_content.append(page_node)
         else:
-            generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page), basepath)
+           all_content.extend(generate_page_recursive(os.path.join(src, page),temp_src, os.path.join(dst,page), basepath))
             
-    
+    return all_content
+
     
 def generate_cname(dst):
     with open(f"{dst}/CNAME", 'w') as cname:

@@ -1,5 +1,4 @@
-# Reverend Insanity Fan Club
-
+# Main pageee
 ![Shadow sect](/images/shadowsect.jpg)
 
 Here's the deal, **I love Reverend Insanity**.

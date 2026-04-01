@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Jinmi's Amazing blog!</title>
+        <title>{{ Title }}</title>
         <link href="/index.css" rel="stylesheet" />
 </head>
 <body>
 
         <main class="page-shell home-shell">
             <section class="home-hero">
-                <h1>Jinmi's Amazing blog!</h1>
+                <h1>{{ Title }}</h1>
                 <p class="home-description">Helloooo, welcome to my..blog? Idk.
                      I just made this to test the static site generator I made. I'll use a production grade solution eventually..
                      You can view the code on github <a href="https://github.com/Jinmi-codes/site-generator">here.</a> </p>
@@ -21,9 +21,7 @@
             <section class="home-posts">
                 <h2>Posts</h2>
                 <ol class="blog-list">
-                    <li><a href="blog/tola/index.html">Tola is adorable</a></li>
-<li><a href="blog/fanclub/index.html">Reverend Insanity Fan Club</a></li>
-<li><a href="blog/plans/index.html">My back hurts.</a></li>
+                    {{ Pages }}
                 </ol>
             </section>
         </main>
